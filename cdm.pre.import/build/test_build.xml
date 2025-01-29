@@ -1,0 +1,19 @@
+<project name="test_build" default="build">
+  <property name="build.results" value="c:/work/wksp/jazz_build/build_results"/>
+  <target name="build">
+    <script language="javascript"><![CDATA[
+      importClass(java.io.File)
+      var loc = project.getProperty("build.results");
+      var fs = project.createDataType("fileset");
+      fs.setDir(new File(loc));
+      fs.setIncludes("*.zip");
+      
+      var zips = fs.getDirectoryScanner(project).getIncludedFiles();
+      for (var i = 0; i < zips.length; i++) {
+         var e = test_build.createTask("echo");
+         e.setMessage(zips[i]);
+         e.perform();
+      }  
+    ]]></script>
+  </target>
+</project>

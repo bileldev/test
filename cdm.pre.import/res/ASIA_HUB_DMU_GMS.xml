@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no" ?>
+<export-definition version="1.1" 
+                   xsi:noNamespaceSchemaLocation="SmdPlmXmlCfg.xsd" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!-- Do not modify "xsi:noNamespaceSchemaLocation" and  "xmlns:xsi" in the "export-Definition" -->
+<!-- It is used to validate this file -->
+
+        <global-settings>
+           <!-- specifies if transformations of assembly relations or folder to model relations are printed -->
+           <option name="transformation" value="true"/>
+           <!-- specifies if folders (dcx:Document) are printed -->
+           <option name="documents" value="true"/>
+           <!-- specifies if j2PbiDti are printed -->
+           <option name="j2PbiDti"  value="true"/>
+           <!-- specifies if the relations between parts and folders are printed -->
+           <!-- <option name="j2PProDc" value="false"/> -->
+           <!-- specifies if the relations between folders and models are printed -->
+           <!-- <option name="j2Attach" value="false"/> -->
+           <!-- specifies if the relations between models and derived data files (like JT) are printed -->
+           <!-- <option name="ItmToVis" value="false"/> --> 
+           <!-- specifies if object handles are printed -->
+           <option name="handles" value="true"/>
+           <!-- specifies how file locations are printed: absolute or URL -->
+           <option name="location-type" value="absolute"/>
+        </global-settings>
+		  
+ 
+	<class-definitions>
+	    <definition name="j0Elemnt">
+	       <add name="Class"/>
+	       <add name="PartNumber"/>
+	       <add name="Nomenclature"/>
+           <add name="Revision"/>
+	       <add name="Sequence"/>
+	       <add name="LifeCycleState"/>
+	       <add name="ProjectName"/>
+	       <add name="OwnerName"/>
+           <add name="Superseded"/>
+           <add name="j0Creator"/>
+           <add name="CreationDate"/>
+           <add name="j0Prototype"/>
+           <add name="j0EngDateEffectiveFrom"/>
+           <add name="j0RelDateEffectiveFrom"/>
+	       <add name="j0ChangeDescription"/>
+	    </definition>
+	    
+	    <definition name="j0GeoPrt" extends="j0Elemnt">
+	       <add name="j0Nomenclature_en_us"/>
+	       <add name="j0PackagingState"/>
+	    </definition>
+	    
+	    <definition name="j0Part" extends="j0GeoPrt">
+	       <add name="j0StatusP"/>
+	       <add name="j0ffKf"/>
+	       <add name="j0ZGSNumber"/>
+	       <add name="j0WeightProg"/>
+	       <add name="j0WeightReal"/>
+	       <add name="j0WeightDiff"/>
+	       <add name="j0WWeightDiff"/>
+	       <add name="j0ShrPartNoMB"/>
+	       <add name="j0ShrPartNoChry"/>
+          <add name="j0CPSurfProt"/>
+          <add name="j0CertRel"/>
+          <add name="j0SecRel"/>
+	       <add name="j0StrcLv"/>
+	       <add name="j0ModCmpNo"/>
+	       <add name="j0ModSubCmpNo"/>
+	       <add name="j0DMUrelevant"/>
+		    <add name="j0HNumber" />
+		    <add name="j0PartCategory"/>
+	    </definition>
+
+       <definition name="j0LiePrt" extends="j0Part">
+           <add name="j0LieferantSnr"/>
+       </definition>
+		
+		<definition name="j0BOMEle" extends="j0Elemnt">
+			<add name="j0Invalid"/>
+		</definition>
+
+		<definition name="j0SDModE" extends="j0BOMEle">
+			<add name="j0Nomenclature_en_us"/>
+		</definition>
+
+	    <definition name="j0SDPos" extends="j0BOMEle">
+	       <add name="j0DiaPosPosVNumber"/>
+	       <add name="j0DynDiaNumber"/>
+	       <add name="j0StrcLv"/>
+	       <add name="j0SmaDia2GeoPos"/>
+	    </definition>
+
+	    <definition name="j0SDPosV" extends="j0BOMEle">
+	       <add name="j0Nomenclature_en_us"/>
+	       <add name="j0DiaPosPosVNumber"/>
+	       <add name="j0DynDiaNumber"/>
+	       <add name="j0CodeRule"/>
+	       <add name="j0AusArtCR"/>
+	       <add name="j0Steer"/>
+	       <add name="j0DynPosVTabInfo2"/>
+	    </definition>
+
+	    <definition name="j0SDLage" extends="j0BOMEle">
+	       <add name="j0DiaPosPosVNumber"/>
+	       <add name="j0DynDiaNumber"/>
+	       <add name="j0CodeRule"/>
+	       <add name="j0AusArtCR"/>
+	    </definition>
+	    
+	<!--***************************************************************************************************-->
+
+      <definition name="j2PbiDti">
+         <add name="j0RelCount"/>
+         <add name="j0DocumentType"/>
+	  </definition>
+
+	    <definition name="AsRevRev">
+	       <add name="Nomenclature"/>
+	       <add name="j0Nomenclature_en_us"/>
+	       <add name="Class"/>
+	       <add name="j0CodeRule"/>
+	       <add name="Remark"/>
+	       <add name="j0RelCount"/>
+	    </definition>
+	    
+	    <definition name="j2pPvRv" extends="AsRevRev">
+	       <add name="Nomenclature"/>
+	       <add name="j0Nomenclature_en_us"/>
+	       <add name="j0PosVRelNr"/>
+	    </definition>
+	        
+	<!--***************************************************************************************************-->
+
+      <definition name="DataItem">
+	     <add name="Class"/>
+         <add name="OwnerName"/>
+         <add name="DataItemDesc"/>
+         <add name="Sequence"/>
+         <add name="ProjectName"/>
+         <add name="DisplayedDesc"/>
+         <add name="LifeCycleState"/>
+         <add name="OBID"/>
+         <add name="j0Creator"/>
+      </definition>
+	
+	  <definition name="j0Note" extends="DataItem">
+		 <add name="NoteData"/>
+		 <add name="NoteTitle"/>
+		 <add name="NoteType"/>
+      </definition>
+
+      <definition name="j0Cdi3D" extends="DataItem">
+         <add name="j0MaterialDetailMatrix"/>
+         <add name="j0CTModSnr"/>
+         <add name="j0CTModNumber"/>
+         <add name="j0CPModTyp"/>
+         <add name="j0CPArea"/>
+         <add name="j0CPMatAL"/>
+         <add name="j0CPMatWEZ"/>
+         <add name="j0Material2"/>
+         <add name="j0WeightCalc"/>
+         <add name="j0CentreOfGravity_x"/>
+         <add name="j0CentreOfGravity_y"/>
+         <add name="j0CentreOfGravity_z"/>
+         <add name="j0Ixx"/>
+         <add name="j0Ixy"/>
+         <add name="j0Iyy"/>
+         <add name="j0Iyz"/>
+         <add name="j0Izz"/>
+         <add name="j0Ixz"/>
+         <add name="j0Height"/>
+      </definition>
+
+      <definition name="j0Cdi2D" extends="DataItem">
+         <add name="j0CTModSnr"/>
+         <add name="j0CTModNumber"/>
+      </definition>
+
+      <definition name="j0CdiFil" extends="DataItem">
+         <add name="j0FileSize"/>
+         <add name="j0GenerationDate"/>
+      </definition>
+
+	</class-definitions>
+</export-definition>

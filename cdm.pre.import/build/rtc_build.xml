@@ -1,0 +1,97 @@
+<project name="cdm_pre_importer_build" default="all">
+  <!-- task defininitions -->
+  <import file="${build.toolkit.dir}/BuildToolkitTaskDefs.xml" />
+  <!-- get userId and password from a save location -->
+  <property file="${java.io.tmpdir}/user_build.properties" />
+  <property name="product_build.dir" value="${basedir}" />
+  <!-- get version information from version.properties -->
+  <property file="${product_build.dir}/../build/version.properties" />
+  <target name="all">
+    <!-- Invoke the main build steps. -->
+    <antcall target="runBuild" />
+  </target>
+
+  <target name="runBuild" depends="build">
+    <echo message="Build ${buildDefinitionId} completed." />
+  </target>
+
+
+  <target name="setBuildLabel">
+    <tstamp>
+      <format property="label" pattern="yyyyMMddHHmm" />
+    </tstamp>
+
+    <buildResultPublisher label="cdm.pre.import_${version}.${label}"
+                          buildResultUUID="${buildResultUUID}"
+                          repositoryAddress="${repositoryAddress}"
+                          userId="${userId}"
+                          password="${password}" />
+  </target>
+
+  <target name="build" depends="setBuildLabel">
+    <!-- Update the build progress in Jazz by starting a new build activity. -->
+    <startBuildActivity activityIdProperty="buildActivityId"
+                        label="building product ..."
+                        buildResultUUID="${buildResultUUID}"
+                        repositoryAddress="${repositoryAddress}"
+                        userId="${userId}"
+                        password="${password}" />
+
+    <ant antfile="product_build.xml" target="build" dir="${product_build.dir}">
+      <property name="version" value="${version}" />
+      <property name="ts" value="${label}" />
+    </ant>
+
+    <completeBuildActivity activityId="${buildActivityId}"
+                           buildResultUUID="${buildResultUUID}"
+                           repositoryAddress="${repositoryAddress}"
+                           userId="${userId}"
+                           password="${password}" />
+
+    <startBuildActivity activityIdProperty="publishActivityId"
+                        label="publish product ..."
+                        buildResultUUID="${buildResultUUID}"
+                        repositoryAddress="${repositoryAddress}"
+                        userId="${userId}"
+                        password="${password}" />
+
+    <ant antfile="product_build.xml" target="publish.product" dir="${product_build.dir}">
+      <property name="publish.dir" value="${publish.dir}" />
+    </ant>
+
+    <script language="javascript">
+      <![CDATA[
+          importClass(java.io.File);
+          var loc = project.getProperty("publish.dir");
+          var fs = project.createDataType("fileset");
+          fs.setDir(new File(loc));
+          fs.setIncludes("*.zip");
+          
+          var zips = fs.getDirectoryScanner(project).getIncludedFiles();
+          var version = project.getProperty("version");
+          var ts = project.getProperty("label");
+      
+          for (var i = 0; i < zips.length; i++) {
+             var zip = zips[i];
+             if (!zip.contains(version + "." + ts)) {
+                continue;
+             }
+             var l = cdm_pre_importer_build.createTask("linkPublisher");
+             l.setRepositoryAddress(project.getProperty("repositoryAddress"));
+             l.setUserId(project.getProperty("userId"));
+             l.setPassword(project.getProperty("password"));
+             l.setBuildResultUUID(project.getProperty("buildResultUUID"));
+             l.setUrl("file://" + loc + "/" + zip);
+             l.setLabel("Link to " + zip);
+             l.perform();
+          }  
+        ]]>
+    </script>
+
+    <completeBuildActivity activityId="${publishActivityId}"
+                           buildResultUUID="${buildResultUUID}"
+                           repositoryAddress="${repositoryAddress}"
+                           userId="${userId}"
+                           password="${password}" />
+  </target>
+</project>

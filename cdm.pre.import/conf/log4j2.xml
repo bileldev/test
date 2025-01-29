@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR" name="example-config">
+	<Properties>
+		<Property name="LOG_DIR">${env:CDM_IMPORTER_LOG}</Property>
+		<Property name="ARCHIVE">${LOG_DIR}</Property>
+		<Property name="PATTERN">%-5level [%d] %F %M:%M(%L): %m%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="${PATTERN}" />
+		</Console>
+
+		<RollingFile name="fileWriter_ALL" fileName="${LOG_DIR}/cdm.pre.importer.info.log"
+			filePattern="${ARCHIVE}/cdm.pre.importer.info.log.%d{yyyy-MM-dd-hh-mm}.gz">
+			<PatternLayout pattern="${PATTERN}" />
+			<OnStartupTriggeringPolicy />
+		</RollingFile>
+		<RollingFile name="fileWriter_ERROR" fileName="${LOG_DIR}/cdm.pre.importer.error.log"
+			filePattern="${ARCHIVE}/cdm.pre.importer.error.log.%d{yyyy-MM-dd-hh-mm}.gz">
+			<PatternLayout pattern="${PATTERN}" />
+			<OnStartupTriggeringPolicy />
+		</RollingFile>
+		<!-- <RollingFile name="fileWriter_WARN" fileName="${LOG_DIR}/cdm.pre.importer.warn.log" 
+			filePattern="${ARCHIVE}/cdm.pre.importer.warn.log.%d{yyyy-MM-dd-hh-mm}.gz"> 
+			<PatternLayout pattern="${PATTERN}" /> <OnStartupTriggeringPolicy /> </RollingFile> -->
+	</Appenders>
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef ref="fileWriter_ALL" level="ALL" />
+			<AppenderRef ref="fileWriter_ERROR" level="ERROR" />
+			<!-- <AppenderRef ref="fileWriter_WARN" level="WARN" /> -->
+		</Root>
+	</Loggers>
+</Configuration>

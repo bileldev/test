@@ -1,0 +1,223 @@
+<project name="cdm.pre.import" default="build">
+  <property name="build.dir" value="${basedir}/_res" />
+  <!-- plugin properties -->
+  <property name="build.plugin.dir" value="${build.dir}/plugin" />
+  <property name="build.batch.dir" value="${build.dir}/batch" />
+  <property name="bin.dir" value="${build.plugin.dir}/bin" />
+  <property name="javacDebugInfo" value="on" />
+  <property name="compilerArg" value="" />
+  <property name="javacSource" value="1.6" />
+  <property name="javacTarget" value="1.6" />
+
+  <!-- product properties -->
+  <property name="build.product.dir" value="${build.dir}/product" />
+  <property name="configs" value="win32, win32, x86_64 &amp; linux, gtk, x86_64" />
+  <property name="build.label" value="cdm.pre.import" />
+
+  <property name="equinoxLauncherPluginVersion" value="1.3.0.v20120522-1813" />
+  <property name="target.dir" value="i:/J-Z/Sma2PLMx/java_deps/e3.8" />
+  <property name="pde.build.dir" value="${target.dir}/plugins/org.eclipse.pde.build_3.8.2.v20121114-140810" />
+  <property name="pde.template.dir" value="${pde.build.dir}/templates" />
+  <property name="pde.scripts.dir" value="${pde.build.dir}/scripts" />
+
+  <property name="mf.batch.file" value="${build.batch.dir}/tmp/MANIFEST.MF" />
+  <property name="mf.batch.dir" value="${build.batch.dir}/tmp/mf" />
+
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+
+  <target name="set.label" unless="ts">
+    <tstamp>
+      <format property="ts" pattern="yyyyMMddHHmm" locale="de" />
+    </tstamp>
+    <property name="version" value="9.9.9" />
+  </target>
+
+  <target name="prepare" depends="set.label">
+    <property name="jar.file" value="${build.plugin.dir}/cdm.pre.import_${version}.${ts}.jar" />
+    <property name="jar.batch.file" value="${build.batch.dir}/cdm.pre.import.batch_${version}.${ts}.jar" />
+    <property name="build.id" value="${build.label}_${version}.${ts}" />
+  </target>
+
+  <target name="prepare.product" depends="prepare">
+    <delete dir="${build.product.dir}" />
+    <mkdir dir="${build.product.dir}" />
+    <mkdir dir="${build.product.dir}/plugins" />
+    <copy todir="${build.product.dir}/plugins" file="${jar.file}" />
+    <copy todir="${build.product.dir}" file="${pde.template.dir}/headless-build/build.properties" />
+
+    <propertyfile file="${build.product.dir}/build.properties">
+      <entry key="product" value="${basedir}/../cdm.pre.import.product" />
+      <entry key="topLevelElementId" value="cdm.pre.import.product" />
+      <entry key="buildDirectory" value="${build.product.dir}" />
+      <entry key="baseLocation" value="${target.dir}" />
+      <entry key="configs" value="${configs}" />
+      <entry key="buildId" value="${build.id}" />
+      <entry key="buildLabel" value="${build.label}" />
+      <entry key="topLevelElementType" value="product" />
+      <entry key="timestamp" value="${ts}" />
+    </propertyfile>
+  </target>
+
+  <target name="prepare.plugin" depends="prepare">
+    <mkdir dir="${build.plugin.dir}" />
+  </target>
+
+  <target name="compile" depends="prepare.plugin">
+    <mkdir dir="${bin.dir}" />
+    <!-- compile the source code -->
+    <javac destdir="${bin.dir}"
+           failonerror="true"
+           verbose="false"
+           debug="${javacDebugInfo}"
+           source="${javacSource}"
+           target="${javacTarget}">
+      <compilerarg line="${compilerArg}" compiler="${build.compiler}" />
+      <classpath>
+        <fileset dir="${target.dir}/plugins">
+          <include name="**/*.jar" />
+        </fileset>
+      </classpath>
+      <src path="${basedir}/../src/" />
+    </javac>
+    <copy todir="${bin.dir}">
+      <fileset dir="${basedir}/../src/">
+        <include name="**/*.properties" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="createJar" depends="compile">
+    <delete dir="${build.plugin.dir}/tmp" quiet="true" />
+    <mkdir dir="${build.plugin.dir}/tmp" />
+    <copy todir="${build.plugin.dir}/tmp" file="${basedir}/../META-INF/MANIFEST.MF" />
+    <copy todir="${bin.dir}/cdm/pre/imp" file="${basedir}/../build/version.properties" />
+
+    <property name="mf.file" value="${build.plugin.dir}/tmp/MANIFEST.MF" />
+    <replaceregexp file="${mf.file}" match="1.0.0.qualifier" replace="${version}.${ts}" />
+    <jar destfile="${jar.file}" manifest="${mf.file}">
+      <fileset dir="${bin.dir}" />
+      <fileset dir="${basedir}/..">
+        <include name="plugin.xml" />
+        <include name="icons/**" />
+        <include name="build/version.properties" />
+      </fileset>
+    </jar>
+    <delete dir="${build.plugin.dir}/tmp" />
+  </target>
+
+
+
+  <target name="createBatchMF">
+
+    <fileset dir="${target.dir}/plugins" id="batch_deps">
+      <include name="org.eclipse.core.commands_*.jar" />
+      <include name="org.eclipse.core.contenttype_*.jar" />
+      <include name="org.eclipse.core.jobs_*.jar" />
+      <include name="org.eclipse.core.runtime_*.jar" />
+      <include name="org.eclipse.equinox.app_*.jar" />
+      <include name="org.eclipse.equinox.common_*.jar" />
+      <include name="org.eclipse.equinox.preferences_*.jar" />
+      <include name="org.eclipse.equinox.registry_*.jar" />
+      <include name="org.eclipse.jface_*.jar" />
+      <include name="org.eclipse.osgi_*.jar" />
+      <include name="org.eclipse.swt.gtk.linux.x86_64_*.jar" />
+      <include name="org.eclipse.swt_*.jar" />
+      <include name="org.eclipse.ui.workbench_*.jar" />
+      <include name="org.eclipse.ui_*.jar" />
+      <include name="runtime_registry_compatibility.jar" />
+    </fileset>
+
+    <delete dir="${build.batch.dir}/tmp" quiet="true" />
+    <mkdir dir="${mf.batch.dir}" />
+    <copy todir="${mf.batch.dir}">
+      <fileset refid="batch_deps" />
+    </copy>
+    <script language="javascript">
+      <![CDATA[
+      importClass(java.io.File);
+      importClass(java.io.FileWriter)
+      var loc = project.getProperty("mf.batch.dir");
+      var files = new File(loc).listFiles();
+      var cpath = "Rsrc-Class-Path: ./"
+      for (var i = 0; i < files.length; i++) {
+          cpath += " " + files[i].getName();
+      }
+      var w = new FileWriter(project.getProperty("mf.batch.file"));
+      try {
+          w.write("Manifest-Version: 1.0\n");
+          w.write("Bundle-Version: 1.0.0.qualifier\n");
+          w.write("Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader\n");
+          var l = 70;
+          while (true) {
+              if (cpath.length > l) {
+                  if (l == 69) {
+                      w.write(" ");
+                  }
+                  w.write(cpath.substring(0, l));
+                  w.write("\n");
+                  cpath = cpath.substring(l);
+              } else {
+                  break;
+              }
+              if (l == 70) {
+                  l = 69;
+              }
+          }
+          w.write("Class-Path: .\n");
+          w.write("Rsrc-Main-Class: cdm.pre.imp.batch.BatchImportUtil\n");
+      } finally {
+          if (w != null) {
+              try {
+                  w.flush();
+                  w.close();
+              } catch (e) {}
+          }
+      }
+     ]]>
+    </script>
+  </target>
+
+  <target name="createBatchJar" depends="compile, createBatchMF">
+    <replaceregexp file="${mf.batch.file}" match="1.0.0.qualifier" replace="${version}.${ts}" />
+    <unzip src="${basedir}/jarinjarloader.zip" dest="${build.batch.dir}/tmp" />
+    <jar destfile="${jar.batch.file}" manifest="${mf.batch.file}">
+      <fileset dir="${build.batch.dir}/tmp">
+        <include name="**/*.class" />
+      </fileset>
+      <fileset dir="${bin.dir}" />
+      <fileset dir="${basedir}/..">
+        <include name="build/version.properties" />
+      </fileset>
+      <fileset refid="batch_deps" />
+    </jar>
+    <delete dir="${build.batch.dir}/tmp" />
+  </target>
+
+  <target name="build" depends="clean, createJar, createBatchJar, prepare.product">
+    <java classname="org.eclipse.equinox.launcher.Main" fork="true" failonerror="true">
+      <arg value="-application" />
+      <arg value="org.eclipse.ant.core.antRunner" />
+      <arg value="-buildfile" />
+      <arg value="${pde.scripts.dir}/productBuild/productBuild.xml" />
+      <arg value="-Dbuilder=${build.product.dir}" />
+      <arg value="-configuration" />
+      <arg value="${build.product.dir}/pde/configuration" />
+      <arg value="-data" />
+      <arg value="${build.product.dir}/pde/data" />
+      <arg value="-vmargs" />
+      <arg value="-Xmx756m" />
+      <classpath>
+        <pathelement location="${target.dir}/plugins/org.eclipse.equinox.launcher_${equinoxLauncherPluginVersion}.jar" />
+      </classpath>
+    </java>
+  </target>
+
+  <target name="publish.product" depends="prepare">
+    <copy todir="${publish.dir}">
+      <fileset dir="${build.product.dir}/${build.label}" includes="*.zip" />
+      <fileset dir="${build.batch.dir}" includes="*.jar" />
+    </copy>
+  </target>
+</project>

@@ -1,0 +1,2045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MappingDefinition>
+<GlobalConst var="creationDate" varXMLPath="PLMXML##dcx:Header" varXMLAttr="creationDate"/>
+<GlobalConst var="REFCONFIG" varXMLPath="PLMXML##dcx:Header##UserData##UserValue" varXMLAttr="title" value="value"/>
+<GlobalConst var="VARIANT_REMOVE_CAR_TYPE" value="C9Montge:ALL,CD9SDiaBR:ALL" />
+<GlobalConst var="VARIANT_REMOVE_CFG_TYPE" value="CD9SDiaBR:ALL,CD9SDHMod:ALL,CD9SDMod:ALL,CD9SDSMod:ALL,CD9SDPos:ALL,CD9SDPosV:ALL,CD9SDLage:ALL,C9Montge:ALL" />
+	<MappingElement>
+		<Class src="j0SDiaBR" target="CD9SDiaBR">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Invalid" target="cd9Invalid" scope="r" type="s"
+				req="false" />
+			<Attr src="j0DynDiaNumber" target="cd9DynDiaNumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0SmaDia2GeoPos" target="cd9SmaDia2GeoPos" scope="r"
+					type="s" req="false" />
+				<MapFunc name="geoPosMapper">
+					<Param name="geoPos" value="$j0SmaDia2GeoPos" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+			<ElemExpr elemTyp="rel">
+				<ElemAttr name ="srcType" value="Item"/>
+				<ElemAttr name ="srcID" value="$PartNumber"/>
+				<ElemAttr name ="relType" value="C9Prod_RevRule_Rel"/>
+				<ElemAttr name ="trgtType" value="RevisionRule"/>
+				<ElemAttr name ="trgtID" value="_$REFCONFIG"/>
+			</ElemExpr>
+			
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0SDHMod" target="CD9SDHMod">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Invalid" target="cd9Invalid" scope="r" type="s"
+				req="false" />
+			<Attr src="j0DynDiaNumber" target="cd9DynDiaNumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0SmaDia2GeoPos" target="cd9SmaDia2GeoPos" scope="r"
+					type="s" req="false" />
+				<MapFunc name="geoPosMapper">
+					<Param name="geoPos" value="$j0SmaDia2GeoPos" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0SDMod" target="CD9SDMod">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Invalid" target="cd9Invalid" scope="r" type="s"
+				req="false" />
+			<Attr src="j0DynDiaNumber" target="cd9DynDiaNumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0SmaDia2GeoPos" target="cd9SmaDia2GeoPos" scope="r"
+					type="s" req="false" />
+				<MapFunc name="geoPosMapper">
+					<Param name="geoPos" value="$j0SmaDia2GeoPos" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0SDSMod" target="CD9SDSMod">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Invalid" target="cd9Invalid" scope="r" type="s"
+				req="false" />
+			<Attr src="j0DynDiaNumber" target="cd9DynDiaNumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0SmaDia2GeoPos" target="cd9SmaDia2GeoPos" scope="r"
+					type="s" req="false" />
+				<MapFunc name="geoPosMapper">
+					<Param name="geoPos" value="$j0SmaDia2GeoPos" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+			
+		
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0Montge" target="C9Montge">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0SDPos" target="CD9SDPos">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0DynDiaNumber" target="cd9DynDiaNumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="j0Invalid" target="cd9Invalid" scope="r" type="s"
+				req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0SmaDia2GeoPos" target="cd9SmaDia2GeoPos" scope="r"
+					type="s" req="false" />
+				<MapFunc name="geoPosMapper">
+					<Param name="geoPos" value="$j0SmaDia2GeoPos" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+			
+
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0SDPosV" target="CD9SDPosV">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0DynDiaNumber" target="cd9DynDiaNumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="j0Steer" target="cd9Steer" scope="r" type="s" req="false" />
+			<Attr src="j0Invalid" target="cd9Invalid" scope="r" type="s"
+				req="false" />
+			<Attr src="j0AusArtCR" target="cd9AusArtCR" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CodeRule" target="cd9CodeRule" scope="r" type="s"
+				req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0SmaDia2GeoPos" target="cd9SmaDia2GeoPos" scope="r"
+					type="s" req="false" />
+				<MapFunc name="geoPosMapper">
+					<Param name="geoPos" value="$j0SmaDia2GeoPos" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0SDLage" target="CD9SDLage">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="j0DynDiaNumber" target="cd9DynDiaNumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0Invalid" target="cd9Invalid" scope="r" type="s"
+				req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0SmaDia2GeoPos" target="cd9SmaDia2GeoPos" scope="r"
+					type="s" req="false" />
+				<MapFunc name="geoPosMapper">
+					<Param name="geoPos" value="$j0SmaDia2GeoPos" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0PrtVer" target="C9Part">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="PartNumber" target="c9PartNumber" scope="i" type="s"
+				req="false" />
+			<Attr src="j0DMUrelevant" target="c9DMUrelevant" scope="r" type="b"
+				req="false" />
+			<Attr src="j0Nomenclature_en_us" target="c9Nomenclature_en"
+				scope="r" type="s" req="false" />
+			<Attr src="j0CertRel" target="c9CertRel" scope="r" type="b" req="false" />
+			<Attr src="j0SecRel" target="c9SecRel" scope="r" type="b" req="false" />
+			<Attr src="j0CPSurfProt" target="c9CPSurfProt" scope="r" type="s"
+				req="false" />
+			<Attr src="j0HNumber" target="c9HNumber" scope="r" type="s" req="false" />
+			<Attr src="j0PartCategory" target="c9PartCategory" scope="r"
+				type="s" req="false" />
+			<Attr src="j0CPAuthor" target="c9CPAuthor" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPColor" target="c9CPColor" scope="r" type="s" req="false" />
+			<Attr src="j0CPDecor" target="c9CPDecor" scope="r" type="s" req="false" />
+			<Attr src="j0CPDepartment" target="c9CPDepartment" scope="r"
+				type="s" req="false" />
+			<Attr src="j0CPFunctInstr" target="c9CPFunctInstr" scope="r"
+				type="s" req="false" />
+			<Attr src="j0CPGenTol" target="c9CPGenTol" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPGenTol2" target="c9CPGenTol2" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPGenTol3" target="c9CPGenTol3" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPNumFeatureDS" target="c9CPNumFeatureDS" scope="r"
+				type="i" req="false" />
+			<Attr src="j0CPNumFeatureDZ" target="c9CPNumFeatureDZ" scope="r"
+				type="i" req="false" />
+			<Attr src="j0CPStatFtr" target="c9CPStatFtr" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPZDate" target="c9CPZDate" scope="r" type="d" req="false" />
+			<Attr src="j0ESDCode" target="c9ESDCode" scope="r" type="b" req="false" />
+			<Attr src="j0FdokRel" target="c9FdokRel" scope="r" type="b" req="false" />
+			<Attr src="j0IsUVKZ" target="c9IsUVKZ" scope="r" type="s" req="false" />
+			<Attr src="j0MasterDataMethod" target="c9MasterDataMethod"
+				scope="r" type="s" req="false" />
+			<Attr src="j0Tolerancing" target="c9Tolerancing" scope="r" type="s"
+				req="false" />
+			<Attr src="j0VPDIdentNum" target="c9VPDIdentNum" scope="r" type="i"
+				req="false" />
+			<Attr src="j0BasePartnumber" target="c9BasePartnumber" scope="r"
+				type="s" req="false" />
+			<Attr src="j0TheftRel" target="c9TheftRel" scope="r" type="s"
+				req="false" />
+			<Attr src="j0EeSigMark" target="c9EeSigMark" scope="r" type="s"
+				req="false" />
+			<Attr src="j0EeSwSec" target="c9EeSwSec" scope="r" type="s" req="false" />
+			<Attr src="j0Settled" target="c9Settled" scope="r" type="s" req="false" />
+			<Attr src="j0Material2" target="c9Material2" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPMatWEZ" target="c9CPMatWEZ" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPMatAL" target="c9CPMatAL" scope="r" type="s" req="false" />
+			<Attr src="j0WeightReal" target="c9WeightReal" scope="r" type="f"
+				req="false" />
+			<Attr src="j0WeightProg" target="c9WeightProg" scope="r" type="f"
+				req="false" />
+			<Attr src="j0ffKf" target="c9ffKf" scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0StdPrt" target="C9StdPart">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0SecRel" target="c9SecRel" scope="r" type="b" req="false" />
+			<Attr src="j0CertRel" target="c9CertRel" scope="r" type="b" req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="PartNumber" target="c9PartNumber" scope="i" type="s"
+				req="false" />
+			<Attr src="j0WeightReal" target="c9WeightReal" scope="r" type="f"
+				req="false" />
+			<Attr src="j0WeightProg" target="c9WeightProg" scope="r" type="f"
+				req="false" />
+			<Attr src="j0DMUrelevant" target="c9DMUrelevant" scope="r" type="b"
+				req="false" />
+			<Attr src="j0ZGSNumber" target="c9ZGSNumber" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Nomenclature_en_us" target="c9Nomenclature_en"
+				scope="r" type="s" req="false" />
+			<Attr src="j0ffKf" target="c9ffKf" scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0LiePrt" target="C9SupplierPart">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="PartNumber" target="c9PartNumber" scope="i" type="s"
+				req="false" />
+			<Attr src="j0WeightReal" target="c9WeightReal" scope="r" type="f"
+				req="false" />
+			<Attr src="j0WeightProg" target="c9WeightProg" scope="r" type="f"
+				req="false" />
+			<Attr src="j0DMUrelevant" target="c9DMUrelevant" scope="r" type="b"
+				req="false" />
+			<Attr src="j0ZGSNumber" target="c9ZGSNumber" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Nomenclature_en_us" target="c9Nomenclature_en"
+				scope="r" type="s" req="false" />
+			<Attr src="j0LieferantSnr" target="c9LieferantSnr" scope="r"
+				type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0BtePrt" target="C9InternalPart">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="PartNumber" target="c9PartNumber" scope="i" type="s"
+				req="false" />
+			<Attr src="j0WeightReal" target="c9WeightReal" scope="r" type="f"
+				req="false" />
+			<Attr src="j0WeightProg" target="c9WeightProg" scope="r" type="f"
+				req="false" />
+			<Attr src="j0DMUrelevant" target="c9DMUrelevant" scope="r" type="b"
+				req="false" />
+			<Attr src="j0ZGSNumber" target="c9ZGSNumber" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Nomenclature_en_us" target="c9Nomenclature_en"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0BrePrt" target="C9FlexPart">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="PartNumber" target="c9PartNumber" scope="i" type="s"
+				req="false" />
+			<Attr src="j0DMUrelevant" target="c9DMUrelevant" scope="r" type="b"
+				req="false" />
+			<Attr src="j0Nomenclature_en_us" target="c9Nomenclature_en"
+				scope="r" type="s" req="false" />
+			<Attr src="j0WeightProg" target="c9WeightProg" scope="r" type="f"
+				req="false" />
+			<Attr src="j0ffKf" target="c9ffKf" scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0CarCmp" target="C9CarCmp">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="PartNumber" target="c9PartNumber" scope="i" type="s"
+				req="false" />
+			<Attr src="j0WeightReal" target="c9WeightReal" scope="r" type="f"
+				req="false" />
+			<Attr src="j0WeightProg" target="c9WeightProg" scope="r" type="f"
+				req="false" />
+			<Attr src="j0DMUrelevant" target="c9DMUrelevant" scope="r" type="b"
+				req="false" />
+			<Attr src="j0ZGSNumber" target="c9ZGSNumber" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Nomenclature_en_us" target="c9Nomenclature_en"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0CarBR" target="C9CarBR">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0VwCmp" target="C9VwCmp">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0Argmnt" target="C9Arrangement">
+			<Attr src="PartNumber" target="item_id" scope="i" type="s" req="true" />
+			<Attr src="Nomenclature" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Revision#Sequence" target="item_revision_id" scope="r"
+					type="s" req="true" />
+				<MapFunc name="revIDGenerator">
+					<Param name="revision" value="$Revision" />
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="j0Cdi3D" target="C9Model">
+			<Attr src="DataItemDesc" target="object_name" scope="i" type="s"
+				req="true" />
+			<Attr src="j0Creator" target="c9SmaCreator" scope="r" type="s"
+				req="false" />
+			<Attr src="j0ChangeDescription" target="c9ChangeDescription"
+				scope="r" type="s" req="false" />
+			<Attr src="j0CTModSnr" target="c9PartNumber" scope="i" type="s"
+				req="false" />
+			<Attr src="j0CPModTyp" target="c9CPModTyp" scope="r" type="s"
+				req="false" />
+			<Attr src="j0Height" target="c9Height" scope="r" type="f" req="false" />
+			<Attr src="j0Ixx" target="c9Ixx" scope="r" type="f" req="false" />
+			<Attr src="j0Ixy" target="c9Ixy" scope="r" type="f" req="false" />
+			<Attr src="j0Ixz" target="c9Ixz" scope="r" type="f" req="false" />
+			<Attr src="j0Iyy" target="c9Iyy" scope="r" type="f" req="false" />
+			<Attr src="j0Iyz" target="c9Iyz" scope="r" type="f" req="false" />
+			<Attr src="j0Izz" target="c9Izz" scope="r" type="f" req="false" />
+			<Attr src="j0Material2" target="c9Material2" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CentreOfGravity_x" target="c9CentreOfGravity_x"
+				scope="r" type="f" req="false" />
+			<Attr src="j0CentreOfGravity_y" target="c9CentreOfGravity_y"
+				scope="r" type="f" req="false" />
+			<Attr src="j0CentreOfGravity_z" target="c9CentreOfGravity_z"
+				scope="r" type="f" req="false" />
+			<Attr src="j0CPArea" target="c9CPArea" scope="r" type="f" req="false" />
+			<Attr src="j0CPMatWEZ" target="c9CPMatWEZ" scope="r" type="s"
+				req="false" />
+			<Attr src="j0CPMatAL" target="c9CPMatAL" scope="r" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="CreationDate" target="c9SmaCreationDate" scope="r"
+					type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$CreationDate" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0RelDateEffectiveFrom" target="c9RelDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0RelDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0EngDateEffectiveFrom" target="c9EngDateEffectiveFrom"
+					scope="r" type="d" req="false" />
+				<MapFunc name="dateConverter">
+					<Param name="inputDate" value="$j0EngDateEffectiveFrom" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="j0CTModSnr#j0CTModNumber" target="item_id" scope="i"
+					type="s" req="true" />
+				<MapFunc name="modelItemIDGenerator">
+					<Param name="j0CTModSnr" value="$j0CTModSnr" />
+					<Param name="j0CTModNumber" value="$j0CTModNumber" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Sequence" target="item_revision_id" scope="r" type="s"
+					req="true" />
+				<MapFunc name="modelRevIDGenerator">
+					<Param name="sequence" value="$Sequence" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="JT" target="DirectModel">
+			<Attr src="DataItemDesc" target="object_name" scope="ud" type="s"
+				req="false" />
+			<Attr src="location" target="file" scope="ud" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="OBID" target="id" scope="r" type="s" req="true" />
+				<MapFunc name="labelMapper">
+					<Param name="label" value="$OBID" />
+					<Param name="impScope" value="car" />
+				</MapFunc>
+			</AttrGrp>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="Feature" target="C44MFGContainer">
+		<AttrGrp>
+				<Attr src="partNumber#Procedure Code" target="item_id" scope="i" type="s" req="true" />
+				<MapFunc name="mfgContainerIDGenerator">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+				</MapFunc>
+			
+		</AttrGrp>	
+		<MapFunc name="getWeldPointType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="HybridShape" target="C44MFGContainer">
+		<AttrGrp>
+				<Attr src="partNumber#Procedure Code" target="item_id" scope="i" type="s" req="true" />
+				<MapFunc name="mfgContainerIDGenerator">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+				</MapFunc>
+				
+			
+		</AttrGrp>
+		<MapFunc name="getWeldPointType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+		</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="Feature" target="ArcWeld">
+			
+			<Attr src="Revision" target="item_revision_id" scope="r"
+					type="s" req="true" />
+			
+			<AttrGrp>
+				<Attr src="Procedure Code" target="object_name" scope="i" type="s"
+					req="true" />
+				<MapFunc name="genWeldName">
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="kg" value="$KG" />
+					<Param name="elemNumber" value="$Element Number" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr
+					src="partNumber#Procedure Code#Output_type#ID#Joined Partner 1#Connected Part 1#Connected Part 2#Joined Partner 2#Element Number"
+					target="item_id" scope="i" type="s" req="true" />
+				<MapFunc name="genWeldItemID">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+			</AttrGrp>	
+			<MapFunc name="getWeldPointType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="Feature" target="WeldPoint">
+		<Attr src="Revision" target="item_revision_id" scope="r"
+					type="s" req="true" />
+			
+			<AttrGrp>
+				<Attr src="Procedure Code" target="object_name" scope="i" type="s"
+					req="true" />
+				<MapFunc name="genWeldName">
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="kg" value="$KG" />
+					<Param name="elemNumber" value="$Element Number" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr
+					src="partNumber#Procedure Code#Output_type#ID#Joined Partner 1#Connected Part 1#Connected Part 2#Joined Partner 2#Element Number"
+					target="item_id" scope="i" type="s" req="true" />
+				<MapFunc name="genWeldItemID">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+			</AttrGrp>	
+			<MapFunc name="getWeldPointType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="HybridShape" target="ArcWeld">
+		<Attr src="Revision" target="item_revision_id" scope="r"
+					type="s" req="true" />
+					<AttrGrp>
+				<Attr src="Procedure Code" target="object_name" scope="i" type="s"
+					req="true" />
+				<MapFunc name="genWeldName">
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="kg" value="$KG" />
+					<Param name="elemNumber" value="$Element Number" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr
+					src="partNumber#Procedure Code#Output_type#ID#Joined Partner 1#Connected Part 1#Connected Part 2#Joined Partner 2#Element Number"
+					target="item_id" scope="i" type="s" req="true" />
+				<MapFunc name="genWeldItemID">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+			</AttrGrp>	
+			<MapFunc name="getWeldPointType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="HybridShape" target="WeldPoint">
+		<Attr src="Revision" target="item_revision_id" scope="r"
+					type="s" req="true" />
+			<AttrGrp>
+				<Attr src="Procedure Code" target="object_name" scope="i" type="s"
+					req="true" />
+				<MapFunc name="genWeldName">
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="kg" value="$KG" />
+					<Param name="elemNumber" value="$Element Number" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr
+					src="partNumber#Procedure Code#Output_type#ID#Joined Partner 1#Connected Part 1#Connected Part 2#Joined Partner 2#Element Number"
+					target="item_id" scope="i" type="s" req="true" />
+				<MapFunc name="genWeldItemID">
+				<Param name="partNumber" value="$partNumber" />
+				<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+			</AttrGrp>	
+			
+			<MapFunc name="getWeldPointType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="Feature" target="ArcWeld Attribute Form">
+			<AttrGrp>
+		<Attr src="Date" target="creation_date" scope="ud" type="d" req="false" />
+			
+			<MapFunc name="difaDateConverter">
+					<Param name="inputDate" value="$Date" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+		</AttrGrp>
+		
+		<AttrGrp>
+		<Attr src="objectName" target="object_name" scope="ud" type="s" req="true" />
+			<MapFunc name="getFormObjectName">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+		</AttrGrp>
+			<Attr src="Version" target="c44Version" scope="ud" type="s" req="false" />
+			<Attr src="Joint Shape" target="c44JointShape" scope="ud" type="s"
+				req="false" />
+			<Attr src="Description" target="c44Description" scope="ud" type="s"
+				req="false" />
+		<AttrGrp>
+		<Attr src="Material" target="c44Material" scope="ud" type="s" req="false" />
+			
+			<MapFunc name='mapMaterialValue'>
+					<Param name='materialVal' value='$Material'/>                                                                           
+                	<Param name='allowedChars' value='_'/>                                                                                         
+                	<Param name='spCharSet' value='[$&amp;+,:;=?@#|/*!%^()\&quot;{}_|&lt;&gt;.&apos;]'/> 
+                	
+			</MapFunc>
+				
+				
+		</AttrGrp>
+			<Attr src="History" target="c44History" scope="ud" type="s" req="false" />
+		
+			
+			<Attr src="Tightness 4" target="c44Tightness4" scope="ud" type="s"
+				req="false" />
+			<Attr src="Tightness 3" target="c44Tightness3" scope="ud" type="s"
+				req="false" />
+			<Attr src="Tightness 2" target="c44Tightness2" scope="ud" type="s"
+				req="false" />
+			<Attr src="Tightness 1" target="c44Tightness1" scope="ud" type="s"
+				req="false" />
+			<Attr src="Exposed Sheet 3" target="c44ExposedSheet3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Exposed Sheet 2" target="c44ExposedSheet2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Exposed Sheet 1" target="c44ExposedSheet1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Cluster" target="c44Cluster" scope="ud" type="s" req="false" />
+			<Attr src="Geo Element" target="c44GeoElement" scope="ud" type="s"
+				req="false" />
+			<Attr src="Robustness" target="c44Robustness" scope="ud" type="s"
+				req="false" />
+			<Attr src="Homologation" target="c44Homologation" scope="ud"
+				type="s" req="false" />
+			<Attr src="Procedure Code" target="c44ProcedureCodeNumber"
+				scope="ud" type="s" req="false" />
+			<Attr src="Variant Label" target="c44VariantenLabel" scope="ud"
+				type="s" req="false" />
+			<Attr src="KG" target="c44KG" scope="ud" type="i" req="false" />
+			<Attr src="Element Number" target="c44ElementNumber" scope="ud"
+				type="i" req="false" />
+			<Attr src="Group" target="Group_id" scope="ud" type="s" req="false" />
+			<Attr src="Type" target="Output_type" scope="ud" type="s" req="false" />
+			<Attr src="Connected Part 1" target="c44Connected_Part_1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 2" target="c44Connected_Part_2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 3" target="c44Connected_Part_3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 4" target="c44Connected_Part_4" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 1" target="c44Connected_Part_1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 2" target="c44Connected_Part_2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 3" target="c44Connected_Part_3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 4" target="c44Connected_Part_4" scope="ud"
+				type="s" req="false" />
+			<Attr src="Profile Deviation" target="c44ProfileDeviation"
+				scope="ud" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_1" scope="ud"
+					type="s" req="false" />
+				<MapFunc name="assgnJoinPartners" />
+			</AttrGrp>
+			
+			<Attr src="ID" target="Id" scope="ud" type="s" req="false" />
+			<Attr src="Weld_Type" target="Weld_type" scope="ud" type="s"
+				req="false" />
+			<Attr src="Segment Length" target="c44SegmentLength" scope="ud"
+				type="s" req="false" />
+			<Attr src="Weld Volume" target="c44WeldVolume" scope="ud" type="f"
+				req="false" />
+				
+			<AttrGrp>
+				<Attr src="Remark2" target="c44Remark2"
+					scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark2" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+			<AttrGrp>
+				<Attr src="Remark" target="c44Remark" scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+			<MapFunc name="getWeldPointFormType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="HybridShape" target="ArcWeld Attribute Form">
+			<AttrGrp>
+		<Attr src="Date" target="creation_date" scope="ud" type="d" req="false" />
+			
+			<MapFunc name="difaDateConverter">
+					<Param name="inputDate" value="$Date" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+		</AttrGrp>
+		
+		<AttrGrp>
+		<Attr src="objectName" target="object_name" scope="ud" type="s" req="true" />
+			<MapFunc name="getFormObjectName">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+		</AttrGrp>
+			<Attr src="Version" target="c44Version" scope="ud" type="s" req="false" />
+			<Attr src="Joint Shape" target="c44JointShape" scope="ud" type="s"
+				req="false" />
+			<Attr src="Function" target="c44Function" scope="ud" type="s"
+				req="false" />
+			<Attr src="Description" target="c44Description" scope="ud" type="s"
+				req="false" />
+			
+				<AttrGrp>
+		<Attr src="Material" target="c44Material" scope="ud" type="s" req="false" />
+			
+			<MapFunc name='mapMaterialValue'>
+					<Param name='materialVal' value='$Material'/>                                                                           
+                	<Param name='allowedChars' value='_'/>                                                                                         
+                	<Param name='spCharSet' value='[$&amp;+,:;=?@#|/*!%^()\&quot;{}_|&lt;&gt;.&apos;]'/> 
+                	
+			</MapFunc>
+				
+				
+		</AttrGrp>
+			<Attr src="History" target="c44History" scope="ud" type="s" req="false" />
+		
+			<AttrGrp>
+				<Attr src="Tightness" target="c44Tightness1" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnTightness" >
+				<Param name="tightness" value="$Tightness" />
+				<Param name="index" value="0" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Tightness" target="c44Tightness2" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnTightness" >
+				<Param name="tightness" value="$Tightness" />
+				<Param name="index" value="1" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Tightness" target="c44Tightness3" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnTightness" >
+				<Param name="tightness" value="$Tightness" />
+				<Param name="index" value="2" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<Attr src="Exposed Sheet 3" target="c44ExposedSheet3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Exposed Sheet 2" target="c44ExposedSheet2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Exposed Sheet 1" target="c44ExposedSheet1" scope="ud"
+				type="s" req="false" />
+				
+				
+			<AttrGrp>
+				<Attr src="Exposed Sheet" target="c44ExposedSheet1" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnExposedSheet" >
+				<Param name="exposedSheet" value="$Exposed Sheet" />
+				<Param name="index" value="0" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Exposed Sheet" target="c44ExposedSheet2" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnExposedSheet" >
+				<Param name="exposedSheet" value="$Exposed Sheet" />
+				<Param name="index" value="1" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Exposed Sheet" target="c44ExposedSheet3" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnExposedSheet" >
+				<Param name="exposedSheet" value="$Exposed Sheet" />
+				<Param name="index" value="2" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+			<Attr src="Robustness" target="c44Robustness" scope="ud" type="s"
+				req="false" />
+			<Attr src="Relevance" target="c44Homologation" scope="ud" type="s"
+				req="false" />
+			<Attr src="Procedure Code" target="c44ProcedureCodeNumber"
+				scope="ud" type="s" req="false" />
+			<Attr src="Variant Label" target="c44VariantenLabel" scope="ud"
+				type="s" req="false" />
+			<Attr src="KG" target="c44KG" scope="ud" type="i" req="false" />
+			<Attr src="Element Number" target="c44ElementNumber" scope="ud"
+				type="i" req="false" />
+			<Attr src="Group" target="Group_id" scope="ud" type="s" req="false" />
+			<Attr src="Type" target="Output_type" scope="ud" type="s" req="false" />
+			<Attr src="Curve Length" target="c44SegmentLength" scope="ud"
+				type="s" req="false" />
+			<Attr src="WeldX_k_value" target="c44Connected_Part_4" scope="ud"
+				type="s" req="false" />
+			<Attr src="Number of sheets welded" target="Number_of_sheets_welded"
+				scope="ud" type="i" req="false" />
+			<Attr src="Geo Curve" target="c44GeoElement" scope="ud" type="s"
+				req="false" />
+			<Attr src="Connected Part 1" target="c44Connected_Part_1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 2" target="c44Connected_Part_2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 3" target="c44Connected_Part_3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 4" target="c44Connected_Part_4" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 1" target="c44Connected_Part_1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 2" target="c44Connected_Part_2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 3" target="c44Connected_Part_3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 4" target="c44Connected_Part_4" scope="ud"
+				type="s" req="false" />
+			<Attr src="Weld_Type" target="Weld_type" scope="ud" type="s"
+				req="false" />
+			<AttrGrp>
+				<Attr src="Remark2" target="c44Remark2" scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark2" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+		
+			<AttrGrp>
+				<Attr src="Remark" target="c44Remark" scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+			
+				<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_1" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="0" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_2" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="1" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_3" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="2" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<MapFunc name="getWeldPointFormType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="Feature" target="SpotWeld Attribute Form">
+			<AttrGrp>
+		<Attr src="Date" target="creation_date" scope="ud" type="d" req="false" />
+			
+			<MapFunc name="difaDateConverter">
+					<Param name="inputDate" value="$Date" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+		</AttrGrp>
+		
+		<AttrGrp>
+		<Attr src="objectName" target="object_name" scope="ud" type="s" req="true" />
+			<MapFunc name="getFormObjectName">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+		</AttrGrp>
+			<Attr src="Version" target="c44Version" scope="ud" type="s" req="false" />
+			<Attr src="Description" target="c44Description" scope="ud" type="s"
+				req="false" />
+			<AttrGrp>
+		<Attr src="Material" target="c44Material" scope="ud" type="s" req="false" />
+			
+			<MapFunc name='mapMaterialValue'>
+					<Param name='materialVal' value='$Material'/>                                                                           
+                	<Param name='allowedChars' value='_'/>                                                                                         
+                	<Param name='spCharSet' value='[$&amp;+,:;=?@#|/*!%^()\&quot;{}_|&lt;&gt;.&apos;]'/> 
+                	
+			</MapFunc>
+				
+				
+		</AttrGrp>
+			<Attr src="History" target="c44History" scope="ud" type="s" req="false" />
+			
+			<Attr src="Tightness 4" target="c44Tightness4" scope="ud" type="s"
+				req="false" />
+			<Attr src="Tightness 3" target="c44Tightness3" scope="ud" type="s"
+				req="false" />
+			<Attr src="Tightness 2" target="c44Tightness2" scope="ud" type="s"
+				req="false" />
+			<Attr src="Tightness 1" target="c44Tightness1" scope="ud" type="s"
+				req="false" />
+			<Attr src="Exposed Sheet 3" target="c44ExposedSheet3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Exposed Sheet 2" target="c44ExposedSheet2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Exposed Sheet 1" target="c44ExposedSheet1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Cluster" target="c44Cluster" scope="ud" type="s" req="false" />
+			<Attr src="Geo Element" target="c44GeoElement" scope="ud" type="s"
+				req="false" />
+			<Attr src="Robustness" target="c44Robustness" scope="ud" type="s"
+				req="false" />
+			<Attr src="Homologation" target="c44Homologation" scope="ud"
+				type="s" req="false" />
+			<Attr src="Procedure Code" target="c44ProcedureCodeNumber"
+				scope="ud" type="s" req="false" />
+			<Attr src="Variant Label" target="c44VariantenLabel" scope="ud"
+				type="s" req="false" />
+			<Attr src="KG" target="c44KG" scope="ud" type="i" req="false" />
+			<Attr src="Element Number" target="c44ElementNumber" scope="ud"
+				type="i" req="false" />
+			<Attr src="Group" target="Group_id" scope="ud" type="s" req="false" />
+			<Attr src="ID" target="Id" scope="ud" type="s" req="false" />
+			<Attr src="Weld_Type" target="Weld_type" scope="ud" type="s"
+				req="false" />
+			<Attr src="Diam" target="c44Diam" scope="ud" type="f" req="false" />
+			<Attr src="WeldX_i_value" target="c44WeldX_i_value" scope="ud"
+				type="s" req="false" />
+			<Attr src="WeldX_j_value" target="c44WeldX_j_value" scope="ud"
+				type="s" req="false" />
+			<Attr src="WeldX_k_value" target="c44WeldX_k_value" scope="ud"
+				type="s" req="false" />
+			<Attr src="JOINS_3_SHEETS" target="c44Joints_3_sheets" scope="ud"
+				type="s" req="false" />
+			<Attr src="Depth/Height" target="c44Depth_Height" scope="ud"
+				type="f" req="false" />
+			<Attr src="Weld_k_value" target="Weld_k_value" scope="ud" type="f"
+				req="false" />
+			<Attr src="Weld_j_value" target="Weld_j_value" scope="ud" type="f"
+				req="false" />
+			<Attr src="Weld_i_value" target="Weld_i_value" scope="ud" type="f"
+				req="false" />
+			<Attr src="Number of sheets welded" target="Number_of_sheets_welded"
+				scope="ud" type="i" req="false" />
+			<Attr src="Output_type" target="Output_type" scope="ud" type="s"
+				req="false" />
+			<Attr src="Z_Pos" target="Z_pos" scope="ud" type="f" req="false" />
+			<Attr src="Y_Pos" target="Y_pos" scope="ud" type="f" req="false" />
+			<Attr src="X_Pos" target="X_pos" scope="ud" type="f" req="false" />
+			<Attr src="Connected Part 1" target="c44Connected_Part_1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 2" target="c44Connected_Part_2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 3" target="c44Connected_Part_3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Connected Part 4" target="c44Connected_Part_4" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 1" target="c44Connected_Part_1" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 2" target="c44Connected_Part_2" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 3" target="c44Connected_Part_3" scope="ud"
+				type="s" req="false" />
+			<Attr src="Joined Partner 4" target="c44Connected_Part_4" scope="ud"
+				type="s" req="false" />
+				
+				<AttrGrp>
+				<Attr src="Remark2" target="c44Remark2"
+					scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark2" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+			<AttrGrp>
+				<Attr src="Remark" target="c44Remark" scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_1" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="0" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_2" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="1" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_3" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="2" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<MapFunc name="getWeldPointFormType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+	<MappingElement>
+		<Class src="HybridShape" target="SpotWeld Attribute Form">
+		
+		<AttrGrp>
+		<Attr src="objectName" target="object_name" scope="ud" type="s" req="true" />
+			<MapFunc name="getFormObjectName">
+					<Param name="partNumber" value="$partNumber" />
+					<Param name="partRevision" value="$partNumber" />
+					<Param name="procCode" value="$Procedure Code" />
+					<Param name="outType" value="$Type" />
+					<Param name="id" value="$ID" />
+					<Param name="joinPartner1" value="$Joined Partner 1" />
+					<Param name="connectedPart1" value="$Connected Part 1" />
+					<Param name="joinPartner2" value="$Joined Partner 2" />
+					<Param name="connectedPart2" value="$Connected Part 2" />
+					<Param name="elementNumber" value="$Element Number" />
+					<Param name="joinedPartners" value="$Joined Partners" />
+				</MapFunc>
+		</AttrGrp>
+		<AttrGrp>
+		<Attr src="Date" target="creation_date" scope="ud" type="d" req="false" />
+			
+			<MapFunc name="difaDateConverter">
+					<Param name="inputDate" value="$Date" />
+					<Param name="sysStartDate" value="1970/01/01-00:00:00:000" />
+				</MapFunc>
+		</AttrGrp>
+			
+			<Attr src="Version" target="c44Version" scope="ud" type="s" req="false" />
+			<Attr src="Description" target="c44Description" scope="ud" type="s" req="false" />
+			<AttrGrp>
+		<Attr src="Material" target="c44Material" scope="ud" type="s" req="false" />
+			
+			<MapFunc name='mapMaterialValue'>
+					<Param name='materialVal' value='$Material'/>                                                                           
+                	<Param name='allowedChars' value='_'/>                                                                                         
+                	<Param name='spCharSet' value='[$&amp;+,:;=?@#|/*!%^()\&quot;{}_|&lt;&gt;.&apos;]'/> 
+                	
+			</MapFunc>
+				
+				
+		</AttrGrp>
+			<Attr src="History" target="c44History" scope="ud" type="s" req="false" />
+		
+			
+			<AttrGrp>
+				<Attr src="Tightness" target="c44Tightness1" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnTightness" >
+				<Param name="tightness" value="$Tightness" />
+				<Param name="index" value="0" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Tightness" target="c44Tightness2" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnTightness" >
+				<Param name="tightness" value="$Tightness" />
+				<Param name="index" value="1" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Tightness" target="c44Tightness3" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnTightness" >
+				<Param name="tightness" value="$Tightness" />
+				<Param name="index" value="2" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<Attr src="Exposed Sheet 3" target="c44ExposedSheet3" scope="ud" type="s" req="false" />
+			<Attr src="Exposed Sheet 2" target="c44ExposedSheet2" scope="ud" type="s" req="false" />
+			<Attr src="Exposed Sheet 1" target="c44ExposedSheet1" scope="ud" type="s" req="false" />
+			<Attr src="Weld_Type" target="Weld_type" scope="ud" type="s"
+				req="false" />
+			<AttrGrp>
+				<Attr src="Exposed Sheet" target="c44ExposedSheet1" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnExposedSheet" >
+				<Param name="exposedSheet" value="$Exposed Sheet" />
+				<Param name="index" value="0" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Exposed Sheet" target="c44ExposedSheet2" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnExposedSheet" >
+				<Param name="exposedSheet" value="$Exposed Sheet" />
+				<Param name="index" value="1" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			<AttrGrp>
+				<Attr src="Exposed Sheet" target="c44ExposedSheet3" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnExposedSheet" >
+				<Param name="exposedSheet" value="$Exposed Sheet" />
+				<Param name="index" value="2" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+			<Attr src="Robustness" target="c44Robustness" scope="ud" type="s" req="false" />
+			<Attr src="Relevance" target="c44Homologation" scope="ud" type="s" req="false" />
+			<Attr src="Procedure Code" target="c44ProcedureCodeNumber" scope="ud" type="s" req="false" />
+			<Attr src="Variant Label" target="c44VariantenLabel" scope="ud" type="s" req="false" />
+			<Attr src="KG" target="c44KG" scope="ud" type="i" req="false" />
+			<Attr src="Element Number" target="c44ElementNumber" scope="ud" type="i" req="false" />
+			<Attr src="Group" target="Group_id" scope="ud" type="s" req="false" />
+			<Attr src="Type" target="Output_type" scope="ud" type="s" req="false" />
+			<Attr src="Diam" target="c44Diam" scope="ud" type="f" req="false" />
+			<Attr src="WeldX_i_value" target="c44WeldX_i_value" scope="ud" 	type="s" req="false" />
+			<Attr src="WeldX_j_value" target="c44WeldX_j_value" scope="ud" type="s" req="false" />
+			<Attr src="WeldX_k_value" target="c44WeldX_k_value" scope="ud" type="s" req="false" />
+			<Attr src="Depth/Height" target="c44Depth_Height" scope="ud" type="f" req="false" /> 
+			<Attr src="Output_type" target="Output_type" scope="ud" type="s" req="false" />
+			<Attr src="Z_Pos" target="Z_pos" scope="ud" type="f" req="false" />
+			<Attr src="Y_Pos" target="Y_pos" scope="ud" type="f" req="false" />
+			<Attr src="X_Pos" target="X_pos" scope="ud" type="f" req="false" />
+			<Attr src="Geo Point" target="c44GeoElement" scope="ud" type="f" req="false" />
+			<Attr src="Connected Part 1" target="c44Connected_Part_1" scope="ud" type="s" req="false" />
+			<Attr src="Connected Part 2" target="c44Connected_Part_2" scope="ud" type="s" req="false" />
+			<Attr src="Connected Part 3" target="c44Connected_Part_3" scope="ud" type="s" req="false" />
+			<Attr src="Connected Part 4" target="c44Connected_Part_4" scope="ud" type="s" req="false" />
+			<Attr src="Joined Partner 1" target="c44Connected_Part_1" scope="ud" type="s" req="false" />
+			<Attr src="Joined Partner 2" target="c44Connected_Part_2" scope="ud" type="s" req="false" />
+			<Attr src="Joined Partner 3" target="c44Connected_Part_3" scope="ud" type="s" req="false" /> 
+			<Attr src="Joined Partner 4" target="c44Connected_Part_4" scope="ud" type="s" req="false" />
+			<AttrGrp>
+				<Attr src="Remark2" target="c44Remark2"
+					scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark2" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+			
+			
+			<AttrGrp>
+				<Attr src="Remark" target="c44Remark" scope="ud" type="s" req="false" />
+				<MapFunc name="validateRemarks">
+					<Param name="remarks" value="$Remark" />
+					<Param name="maxLength" value="4000" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_1" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="0" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_2" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="1" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<AttrGrp>
+				<Attr src="Joined Partners" target="c44Connected_Part_3" scope="ud" type="s" req="false" />
+				<MapFunc name="assgnJoinPartner" >
+				<Param name="joinedPartners" value="$Joined Partners" />
+				<Param name="index" value="2" />
+				<Param name="separator" value="|" />
+				</MapFunc>
+			</AttrGrp>
+			
+			<MapFunc name="getWeldPointFormType">
+				<Param name="type" value="$Type" />
+				<Param name="spotWeldTypes" value="DXWeld-CAR-Weld,DXWeld-CAR-Robscan,DXWeld-CAR-Mechanic,DCMWld_CAR_Point,DCMWld_PKW_Point" />
+				<Param name="arcWeldTypes" value="DXWeld-CAR-Curve,DXWeld-CAR-Curve,DCMWld_CAR_Curve,DCMWld_PKW_Curve,DCMWld_PKW_Robscan" />
+			</MapFunc>
+		</Class>
+	</MappingElement>
+</MappingDefinition>	
